@@ -18,6 +18,7 @@
    
 </head>
 <body>
+<div th:substituteby="header::header"></div>
 <form action="productRetrieveByCategory" method ="post" >
 	<br/><label>類別:</label>
 	<select name = "ProductCategory" th:field="${ProductCategory.id}">

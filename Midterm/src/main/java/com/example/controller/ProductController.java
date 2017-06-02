@@ -33,7 +33,7 @@ public class ProductController {
 	 @Autowired
 	 ShoppingCart cart;
 	 
-	 @RequestMapping(value = "/", method = RequestMethod.GET)
+	 @RequestMapping(value = "/hi", method = RequestMethod.GET)
 	    public ModelAndView openFormLogin() {
 	       ModelAndView model = new ModelAndView("hi");
 	   
