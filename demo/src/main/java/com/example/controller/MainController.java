@@ -19,6 +19,9 @@ package com.example.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.example.entity.Member;
 
 /**
  * @author Joe Grandja
@@ -50,6 +53,14 @@ public class MainController {
  public String loginError(Model model) {
   model.addAttribute("loginError", true);
   return "login";
+ }
+ 
+ @RequestMapping("/registration")
+ public ModelAndView registration(){
+	 ModelAndView model = new ModelAndView("registration");
+	 model.addObject("Member",new Member());
+	 
+	 return model;
  }
 
 }
