@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <link rel="stylesheet" href="bootstrap.min.css"/>
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Create New Product</title>
+    
+    <style>
+	
+	tbody{ 		
+			background: #e6f7ff;
+			/* BLUE */	
+  			color:black;
+  		}
+  
+	</style>
+</head>
+<body>
+
+	 <div class="container">
+ 		
+		<form role ="form" action="productCreate" th:object="${Product}" method ="POST">
+		
+		Hello <span th:text="${session.loginId}">login id</span>!
+		<div class="form-group">
+		
+			<br/><label>類別: </label>
+			<select name = "productCategory" >
+			  <option th:each="productCategory : ${allProductCategories}" 
+			          th:value="${productCategory.id}" 
+			          th:text="${productCategory.name}">商業</option>
+			</select>	
+		</div>
+				
+		<div class="form-group">
+		   <label>產品描述1:</label>
+		   <input type="text" name="description" class="form-control" 
+		   th:field="*{description}" placeholder="Product description.."/>
+		   <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+			</div>
+			
+		 <div class="form-group">		   
+		   <label>產品類型: </label>
+				<select class="form-control" name="type">
+    				<option value="PC">個人電腦</option>
+   				 	<option value="Notebook">筆記型電腦</option>
+   					<option value="Tablet">平板電腦</option>
+    					<option value="SmartPhone">智慧型手機</option>
+  				</select>
+		  <br/>
+		</div>
+		
+		<div class="form-group" >
+		   <label>產品數量:</label>
+		   <input type="text" name ="stock" class="form-control" th:field="*{stock}" /><br/>
+		    <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>
+		 </div>
+		 
+		 <div class="form-group">
+		   <label>產品安全存量: </label>
+		   <input type="text" name ="secure_stock" class="form-control" th:field="*{secure_stock}"/>
+		   <div th:if="${#fields.hasErrors('secure_stock')}" th:errors="*{secure_stock}"></div>
+	 	</div>
+	 	
+		   <button type="submit" class="btn btn-default" onclick="return confirm('確定送出?');">送出</button>
+		 
+	
+			</form>
+		
+		</div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+		 <link rel="stylesheet" href="bootstrap.min.css"/>
+	 	 <script src="jquery.min.js"></script>
+	     <script src="bootstrap.min.js"></script>
+	  	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    	 <meta charset="UTF-8"/>
+    	 <title>List ALL Product</title>
+    
+   
+</head>
+<body>
+<div th:substituteby="header::header"></div>
+<form action="productRetrieveByCategory" method ="post" >
+	<br/><label>類別:</label>
+	<select name = "ProductCategory" th:field="${ProductCategory.id}">
+	  <option th:each="ProductCategory : ${allProductCategories}" 
+	          th:value="${ProductCategory.id}" 
+	          th:text="${ProductCategory.name}">商業</option>
+	</select>
+	 <input type="submit" value="Submit"/>
+     <a href="productRetrieveAll">
+     <input type="button" value="Show All Products"/></a>
+	</form>
+	
+<a href="productCreate"><input type="button" value="新增產品"/></a>
+<a href="shoppingCartList"><input type="button" value="查看購物車"/></a>
+
+<div class="container-fluid">
+  <h2>Ticket Table</h2>
+             
+  <table class="table table-condensed">
+  
+    <thead/>
+      <tr>
+		<th>產品編號</th>
+		<th>產品敘述</th>
+		<th>產品類別</th>
+		<th>產品庫存量</th>
+		<th>產品安全庫存量</th>
+		<th></th>
+		<th></th>
+	</tr>
+    <tr class="info" th:each="Product : ${allProducts} " th:object="${Product}">
+        <td th:text="*{id}">1</td>
+        <td th:text="*{description}">apple</td>
+        <td th:text="*{type}">tb</td>
+        <td th:text="*{stock}">1</td>
+        <td th:text="*{secure_stock}">1</td>
+        <td><a th:href="@{shoppingCartAdd(id=*{id})}">加入購物車</a></td>
+        <td>
+        <a th:href="@{productUpdate(id=${Product.id})}" onclick="return confirm('確定要修改嗎?');">修改</a> 
+        <a th:href="@{productDelete(id=${Product.id})}" onclick="return confirm('確定要刪除嗎?');" >刪除</a></td>
+    </tr>
+</table>
+
+
+</div>
+
+
+</body>
+</html>
