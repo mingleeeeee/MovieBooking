@@ -74,6 +74,20 @@ import javax.validation.constraints.Size;
 		 this.m_nick_name = m_nick_name;
 	 }
 	 
+	 public String getM_username(){
+		 return m_username;
+	 }
+	 public void setM_username( String m_username){
+		 this.m_username = m_username;
+	 }
+	 
+	 public String getM_password(){
+		 return m_password;
+	 }
+	 public void setM_password( String m_password){
+		 this.m_password = m_password;
+	 }
+	 
 	 public int getM_birth(){
 		 return m_birth;
 	 }
@@ -98,11 +112,11 @@ import javax.validation.constraints.Size;
 		    this.m_address = m_address;	 
 		 }
 	 
-	 public String getTel(){
+	 public String getM_tel(){
 		 return m_tel;
 	 }
 	 
-	 public void setTel( String m_tel){
+	 public void setM_tel( String m_tel){
 		 this.m_tel = m_tel;
 	 }
 }
