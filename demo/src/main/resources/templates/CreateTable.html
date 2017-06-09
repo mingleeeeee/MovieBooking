@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="productCreate" th:object="${product}" method="POST">
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<div class="input-group">
+						<th>產品描述：</th>
+						<th><input type="text" name="name"  placeholder="產品描述"/><br /></th>
+						</div>
+					</tr>
+			
+					<tr>
+						<th>庫存量1：</th>
+						<th><input type="text" name="stock"  /> <br /></th>
+						
+					</tr>
+					<tr>
+						<th>安全庫存量：</th>
+						<th><input type="text" name="safeStock" /> <br /></th>
+						
+					</tr>
+					<tr>
+						<th></th>
+						<th><button type="submit" class="btn btn-warning" >Submit</button></th>
+						<th></th>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+</body>
+</html>

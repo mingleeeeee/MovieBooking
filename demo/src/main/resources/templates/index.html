@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <title>Hello Spring Security</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+    </head>
+    <body>
+        <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">   
+            Logged in user: <span sec:authentication="name"></span> |     
+            Roles: <span sec:authentication="principal.authorities"></span>    
+            <div>
+                <form action="#" th:action="@{/logout}" method="post">     
+                    <input type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+        
+        
+        
+<div class="container-fluid">
+  <h2>Ticket Table</h2>
+             
+  <table class="table table-condensed">
+  
+    <thead/>
+      <tr>
+		<th>電影編號</th>
+		<th>電影名稱</th>
+		<th>電影時間</th>
+		
+		<th></th>
+		<th></th>
+	</tr>
+    <tr class="info" th:each="Product : ${allProducts} " th:object="${Product}">
+        <td th:text="*{id}">1</td>
+        <td th:text="*{description}">apple</td>
+        <td th:text="*{type}">tb</td>
+        <td th:text="*{stock}">1</td>
+        <td th:text="*{secure_stock}">1</td>
+        <td><a th:href="@{shoppingCartAdd(id=*{id})}">加入購物車</a></td>
+        <td>
+        <a th:href="@{productUpdate(id=${Product.id})}" onclick="return confirm('確定要修改嗎?');">修改</a> 
+        <a th:href="@{productDelete(id=${Product.id})}" onclick="return confirm('確定要刪除嗎?');" >刪除</a></td>
+    </tr>
+</table>
+        </div>
+    </body>
+</html>
