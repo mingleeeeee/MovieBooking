@@ -35,7 +35,7 @@ public class ProductController {
 	 
 	 @RequestMapping(value = "/hi", method = RequestMethod.GET)
 	    public ModelAndView openFormLogin() {
-	       ModelAndView model = new ModelAndView("hi");
+	       ModelAndView model = new ModelAndView("productCreate");
 	   
 	       return model;
 	    }

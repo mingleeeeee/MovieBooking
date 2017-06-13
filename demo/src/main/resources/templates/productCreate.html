@@ -25,7 +25,7 @@
 
 	 <div class="container">
  		
-		<form role ="form" action="productCreate" th:object="${Product}" method ="POST">
+		<form role ="form" th:action="@{/productCreate}" th:object="${Product}" method ="POST">
 		
 		Hello <span th:text="${session.loginId}">login id</span>!
 		<div class="form-group">

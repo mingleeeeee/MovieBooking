@@ -23,7 +23,7 @@
 <body>
 
 <div class="container">
-		<form role ="form" action="productCreate" th:object="${Product}" method ="post">
+		<form role ="form" th:action="@{/productCreate}" th:object="${Product}" method ="post">
 			
 		<div class="form-group">
 			<br/><label>類別: </label>
