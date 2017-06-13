@@ -31,7 +31,7 @@ public class MainController {
 
   @RequestMapping("/")
  public String root() {
-  return "redirect:/product";
+  return "redirect:/ticketSelect";
  }
 
  @RequestMapping("/index")
@@ -55,12 +55,6 @@ public class MainController {
   return "login";
  }
  
- @RequestMapping("/registration")
- public ModelAndView registration(){
-	 ModelAndView model = new ModelAndView("registration");
-	 model.addObject("Member",new Member());
-	 
-	 return model;
- }
+ 
 
 }
