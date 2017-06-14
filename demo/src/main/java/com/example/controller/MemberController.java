@@ -42,7 +42,7 @@ public class MemberController {
 		return model;
 	}
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public ModelAndView movieDone(@Valid @ModelAttribute("Member") Member member,  BindingResult bindingResult)
+	public ModelAndView processForm(@Valid @ModelAttribute("Member") Member member,  BindingResult bindingResult)
 			 {
 		ModelAndView model;
 		if (bindingResult.hasErrors()) {
