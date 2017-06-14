@@ -13,110 +13,111 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-	@Entity
-	@Table(name = "member")
-	public class Member implements Serializable {
+	 @Entity
+	 @Table(name = "member")
+	 public class Member implements Serializable {
 	 
-	private static final long serialVersionUID = 3316076651716569539L;	
-	@Id
+	 private static final long serialVersionUID = 3316076651716569539L;	
+	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 private long m_id;
+	 private long id;
 	 
 	 @NotNull(message="不得空白")
 	 @Size(min = 1,message="不得空白")
-	 private String m_last_name ;
+	 private String last_name ;
 	 @NotNull(message="不得空白")
-	 private String m_first_name;
+	 private String first_name;
 	 
-	 private String m_nick_name;
-	 
-	 @NotNull(message="不得空白")
-	 private String m_username;
-	 @NotNull(message="不得空白")
-	 private String m_password;
+	 private String nick_name;
 	 
 	 @NotNull(message="不得空白")
-	 private int m_birth;
+	 private String username;
 	 @NotNull(message="不得空白")
-	 private int m_year;
+	 private String password;
 	 
-	 private String m_address;
-	 private String m_tel;
+	 @NotNull(message="不得空白")
+	 private int birth;
+	 @NotNull(message="不得空白")
+	 private int year;
+	 @NotNull(message="不得空白")
+	 private String address;
+	 @NotNull(message="不得空白")
+	 private String tel;
 	 
-	 public long getM_id(){
-		 return this.m_id;
+	 public long getId(){
+		 return this.id;
 	 }
-	 public void setM_id( long m_id){
-		 this.m_id = m_id;
+	 public void setId( long id){
+		 this.id = id;
 	 }
 
-	 public String getM_last_name(){
-		 return m_last_name;
+	 public String getLast_name(){
+		 return last_name;
 	 }
 	 
-	 public void setM_last_name( String m_last_name){
-		 this.m_last_name = m_last_name;
+	 public void setLast_name( String last_name){
+		 this.last_name = last_name;
 	 }
 	 
-	 public String getM_first_name(){
-		 return m_first_name;
+	 public String getFirst_name(){
+		 return first_name;
 	 }
 	 
-	 public void setM_first_name( String m_first_name){
-		 this.m_first_name = m_first_name;
+	 public void setFirst_name( String first_name){
+		 this.first_name = first_name;
 	 }
 	 
-	 public String getM_nick_name(){
-		 return m_nick_name;
+	 public String getNick_name(){
+		 return nick_name;
 	 }
 	 
-	 public void setM_nick_name( String m_nick_name){
-		 this.m_nick_name = m_nick_name;
+	 public void setNick_name( String nick_name){
+		 this.nick_name = nick_name;
 	 }
 	 
-	 public String getM_username(){
-		 return m_username;
+	 public String getUsername(){
+		 return username;
 	 }
-	 public void setM_username( String m_username){
-		 this.m_username = m_username;
-	 }
-	 
-	 public String getM_password(){
-		 return m_password;
-	 }
-	 public void setM_password( String m_password){
-		 this.m_password = m_password;
+	 public void setM_username( String username){
+		 this.username = username;
 	 }
 	 
-	 public int getM_birth(){
-		 return m_birth;
+	 public String getPassword(){
+		 return password;
+	 }
+	 public void setPassword( String password){
+		 this.password = password;
 	 }
 	 
-	 public void setM_birth( int m_birth){
-		 this.m_birth = m_birth;
+	 public int getBirth(){
+		 return birth;
 	 }
 	 
-	 public int getM_year(){
-		 return m_year;
+	 public void setBirth( int birth){
+		 this.birth = birth;
 	 }
 	 
-	 public void setM_year( int m_year){
-		 this.m_year = m_year;
+	 public int getYear(){
+		 return year;
 	 }
 	 
-	 public String getM_address(){
-	    return m_address;	 
+	 public void setYear( int year){
+		 this.year = year;
 	 }
 	 
-	 public void setM_address( String m_address){
-		    this.m_address = m_address;	 
+	 public String getAddress(){
+	    return address;	 
+	 }
+	 
+	 public void setAddress( String address){
+		    this.address = address;	 
 		 }
 	 
-	 public String getM_tel(){
-		 return m_tel;
+	 public String getTel(){
+		 return tel;
 	 }
 	 
-	 public void setM_tel( String m_tel){
-		 this.m_tel = m_tel;
+	 public void setTel( String tel){
+		 this.tel = tel;
 	 }
 }
