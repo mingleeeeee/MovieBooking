@@ -25,11 +25,8 @@ import javax.validation.constraints.Size;
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long time_slot_id;
 	 
-	 @NotNull(message="")
 	 private int time_slot_beginning;
-	 @NotNull(message="")
-	 private int time_slot_ending;
-	 
+	 private int time_slot_ending; 
 	 private String time_slot_date;
 	 
 	 public long getTime_slot_id(){

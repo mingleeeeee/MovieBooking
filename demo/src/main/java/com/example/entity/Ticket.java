@@ -25,9 +25,7 @@ import javax.validation.constraints.Size;
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long ticket_id;
 	 
-	 @NotNull(message="")
 	 private int show ;
-	 @NotNull(message="")
 	 private int ticket_type_id;
 	 
 	 public long getTicket_id(){

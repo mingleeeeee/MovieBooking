@@ -21,12 +21,8 @@ import javax.validation.constraints.Size;
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long h_id;
-	 @NotNull(message="不得空白")
-	 @Size(min = 1,message="不得空白")
-	 
 	 private String h_floor ;
-	 @NotNull(message="不得空白")
-	 @Size(min = 1,message="不得空白")
+	
 	 
 	 public long getH_id() {
 		return h_id;

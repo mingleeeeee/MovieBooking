@@ -24,10 +24,9 @@ import javax.validation.constraints.Size;
 	@Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long transaction_id;
-	 
-	 @NotNull(message="")
+		
 	 private String name;
-	 @NotNull(message="")
+	
 	 private int movie;
 	 private int time_slot;
 	 private int ticket_type;
