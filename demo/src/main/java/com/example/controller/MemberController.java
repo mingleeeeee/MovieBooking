@@ -4,6 +4,7 @@ import com.example.dao.MemberDAO;
 
 import java.sql.SQLException;
 
+import javax.persistence.Table;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -29,6 +30,7 @@ import com.example.entity.Ticket;
 import com.example.entity.Ticket_type;
 import com.example.entity.Time_slot;
 import com.example.entity.Transaction;
+
 
 public class MemberController {
 	
