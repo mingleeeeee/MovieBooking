@@ -25,10 +25,14 @@ import javax.validation.constraints.Size;
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long ticket_id;
 	 
-	 @NotNull(message="")
-	 private int show ;
-	 @NotNull(message="")
-	 private int ticket_type_id;
+	 @ManyToOne
+	 @JoinColumn(name = "show_id")
+	 private Show show ;
+	 @ManyToOne
+	 @JoinColumn(name = "ticket_type_id")
+	 private Ticket_type ticket_type_id;
+	 
+	 private int amount;
 	 
 	 public long getTicket_id(){
 		 return ticket_id;
@@ -38,17 +42,25 @@ import javax.validation.constraints.Size;
 		 this.ticket_id = ticket_id;
 	 }
 	 
-	 public int getShow (){
+	 public Show getShow (){
 		return show;
 	 }
 	 
-	 public void setShow( int show){
+	 public void setShow( Show show){
 		 this.show = show;
 	 }
-	 public int getTicket_type_id(){
+	 public Ticket_type getTicket_type_id(){
 		return ticket_type_id; 
 	 }
-	 
+	 public void setTicket_type_id( Ticket_type ticket_type_id){
+		 this.ticket_type_id = ticket_type_id; 
+	 }
+	 public int getAmount(){
+		 return amount;
+	 }
+	 public void setAmount( int amount){
+		 this.amount = amount;
+	 }
 	 
 	 
 	 

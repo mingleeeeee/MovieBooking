@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -22,12 +24,11 @@ import javax.validation.constraints.Size;
 	@Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long ticket_type;
-	 
-	 @NotNull(message="")
-	 private String ticket_type_name ;
-	 @NotNull(message="")
+	 private String ticket_type_name ;	
 	 private int ticket_type_price;
 	 
+	 @OneToMany(mappedBy = "ticket_type_id")
+	 private List <Ticket> tickets;
 	 
 	 public long getTicket_type(){
 		 return ticket_type;
@@ -48,7 +49,14 @@ import javax.validation.constraints.Size;
 	 }
 	 public void setTicket_type_price( int ticket_type_price){
 		 this.ticket_type_price = ticket_type_price;
+	 } 
+	 public List<Ticket> getTickets(){
+		 return tickets;
 	 }
+	 public void setTicekts( List<Ticket> tickets){
+		 this.tickets = tickets;
+	 }
+	 
 	 
 	 
 }

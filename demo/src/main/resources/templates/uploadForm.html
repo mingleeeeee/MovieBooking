@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+ <div>
+  <form th:action="@{/moviePhoto}" enctype="multipart/form-data" th:object="${Movie}" method ="post">
+
+   ID:<input type="text" name="movie_id" th:field="*{movie_id}"/>1<br/>
+   NAME:<input type="text" name = "movie_name" th:field="*{movie_id}"/>1<br/>
+   照片:<input type="file" name="photoFile" th:field="*{photo}"/><br/>
+ <input type="submit" value="Submit"/>
+
+ </form>
+ </div>
+
+ 
+
+</body>
+</html>

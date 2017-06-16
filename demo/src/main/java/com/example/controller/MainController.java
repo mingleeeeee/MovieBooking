@@ -31,7 +31,7 @@ public class MainController {
 
   @RequestMapping("/")
  public String root() {
-  return "redirect:/ticketSelect";
+  return "redirect:/movieSelect";
  }
 
  @RequestMapping("/index")

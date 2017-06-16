@@ -22,7 +22,9 @@ import javax.validation.constraints.Size;
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long seat_id;
 	 
-	 private int belong_which_hall ;
+	 @ManyToOne
+	 @JoinColumn(name = "hall_id")
+	 private Hall belong_which_hall ;
 	
 	 
 	 public long getSeat_id() {
@@ -31,10 +33,10 @@ import javax.validation.constraints.Size;
 	 public void setSeat_id(long seat_id) {
 		this.seat_id = seat_id;
 	 }
-	 public int getBelong_which_hall() {
+	 public Hall getBelong_which_hall() {
 		return belong_which_hall;
 	 }
-	 public void setBelong_which_hall(int belong_which_hall) {
+	 public void setBelong_which_hall(Hall belong_which_hall) {
 		this.belong_which_hall = belong_which_hall;
 	 }
 	 
