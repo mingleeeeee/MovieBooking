@@ -16,18 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.dao.MovieDAO;
-import com.example.dao.TicketDAO;
-import com.example.dao.TicketTypeDAO;
-import com.example.dao.TimeSlotDAO;
 import com.example.entity.Member;
-import com.example.entity.Movie;
-import com.example.entity.ProductCategory;
-import com.example.entity.ShoppingCart;
-import com.example.entity.Ticket;
-import com.example.entity.Ticket_type;
-import com.example.entity.Time_slot;
-@Controller
+
+
 public class MemberController {
 	
 	@Autowired
