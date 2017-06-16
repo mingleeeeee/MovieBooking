@@ -29,10 +29,13 @@ import org.springframework.web.multipart.MultipartFile;
 	 
 	 private transient MultipartFile photoFile;
 	 private String photo;
-	 /**
-	 @OneToMany(mappedBy = "movie")
+	 
+	 
+	 @OneToMany(mappedBy = "movie_id")
 	 private List<Show> movie_show;
-	 **/
+	 
+	 @OneToMany(mappedBy = "time_slot_id")
+	 private List<Time_slot> time_slot ;
  
 	 public long getMovie_id(){
 		 return movie_id;
@@ -60,15 +63,18 @@ import org.springframework.web.multipart.MultipartFile;
 		 }
 	 public void setPhoto(String photo) {
 		  this.photo = photo;
-		 } 
-	 
-	 /**
+		 } 	 	 
 	 public List<Show> getMovie_show(){
 		 return movie_show;
 	 }
 	 public void setMovie_show( List<Show> movie_show){
 		 this.movie_show = movie_show;
 	 }
-	 **/
+	 public List<Time_slot> getTime_slot(){
+		 return time_slot;
+	 }
+	 public void setTime_slot( List<Time_slot> time_slot){
+		 this.time_slot = time_slot;
+	 }
 	 
 }

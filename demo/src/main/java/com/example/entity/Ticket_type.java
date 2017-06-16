@@ -24,14 +24,11 @@ import javax.validation.constraints.Size;
 	@Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long ticket_type;
-	 
-	/**
-	 @OneToMany(mappedBy = "ticket_type")
-	 private List <Ticket> tickets;
-	**/
 	 private String ticket_type_name ;	
 	 private int ticket_type_price;
 	 
+	 @OneToMany(mappedBy = "ticket_type_id")
+	 private List <Ticket> tickets;
 	 
 	 public long getTicket_type(){
 		 return ticket_type;
@@ -52,16 +49,14 @@ import javax.validation.constraints.Size;
 	 }
 	 public void setTicket_type_price( int ticket_type_price){
 		 this.ticket_type_price = ticket_type_price;
-	 }
-	 
-	 /**
+	 } 
 	 public List<Ticket> getTickets(){
 		 return tickets;
 	 }
 	 public void setTicekts( List<Ticket> tickets){
 		 this.tickets = tickets;
 	 }
-	 **/
+	 
 	 
 	 
 }

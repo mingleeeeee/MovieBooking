@@ -1,8 +1,13 @@
 package com.example.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -14,34 +19,44 @@ import javax.persistence.Table;
 	
 	 @Id
 	 private long show_id;	  
-	 private int movie_id ;	 
-	 private int hall_id; 
-	 private int time_slot_id;
-	 	 
+	
+	 @ManyToOne
+	 @JoinColumn(name = "movie_id")
+	 private Movie movie_id;
+	 @ManyToOne
+	 @JoinColumn(name = "hall_id")
+	 private Hall hall_id;
+	 @ManyToOne
+	 @JoinColumn(name = "time_slot_id")
+	 private Time_slot time_slot_id;
+	 
+	 
+	 
 	 public long getShow_id(){
 		 return show_id;
 	 }
 	 public void setShow_id(int show_id){
 		 this.show_id = show_id;
 	 }
-	 public int getMovie_id(){
+	 public Movie getMovie_id(){
 		 return movie_id;
 	 }
-	 public void setMovie_id( int movie_id ){
+	 public void setMovie_id( Movie movie_id ){
 		 this.movie_id = movie_id;
 	 } 
-	 public int getHall_id(){
+	 public Hall getHall_id(){
 		 return hall_id;
 	 }
-	 public void setHall_id( int hall_id){
+	 public void setHall_id( Hall hall_id){
 		 this.hall_id = hall_id;
 	 } 
-	 public int getTime_slot_id(){
+	 public Time_slot getTime_slot_id(){
 		 return time_slot_id;
 	 }
-	 public void setTime_slot_id( int time_slot_id ){
+	 public void setTime_slot_id( Time_slot time_slot_id ){
 		 this.time_slot_id = time_slot_id;
 	 }
+	
 	 
 	
 }

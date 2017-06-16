@@ -15,7 +15,7 @@
         
         <div class="container">
         
-        <form th:action="@{/movieSelect}" enctype="multipart/form-data" role = "form" th:object="${Transaction}" method = "POST">
+        <form th:action="@{/movieSelect}" role = "form" th:object="${Movie}" method = "POST">
         		<table class="table table-condensed">
         			<thead/>
 		      <tr>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr class="info" th:each="movie : ${movie} ">
 				<td th:text="${movie.movie_name}"></td>
-				<td><img th:src="'resources/'+*{photo}" width="100px"/></td>
+				<td></td>
 				<td>
 				<a th:href="@{timeSelect(movie_id=${movie.movie_id})}">選擇</a></td>
 			</tr>

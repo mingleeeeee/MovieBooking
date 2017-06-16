@@ -3,6 +3,7 @@ package com.example.entity;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -28,6 +30,10 @@ import javax.validation.constraints.Size;
 	 private int time_slot_beginning;
 	 private int time_slot_ending; 
 	 private String time_slot_date;
+	 
+	 @OneToMany(mappedBy = "time_slot_id")
+	 private List<Time_slot> time_slot ;
+	 
 	 
 	 public long getTime_slot_id(){
 		 return time_slot_id;
@@ -57,7 +63,12 @@ import javax.validation.constraints.Size;
 	 public void setTime_slot_date( String time_slot_date){
 		 this.time_slot_date = time_slot_date;
 	 }
-	 
+	 public List<Time_slot> getTime_slot(){
+		 return time_slot;
+	 }
+	 public void setTime_slot( List<Time_slot> time_slot){
+		 this.time_slot = time_slot;
+	 }
 	 
 	 
 }
