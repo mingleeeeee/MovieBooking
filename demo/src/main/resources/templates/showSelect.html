@@ -20,15 +20,18 @@
  			<table class="table table-condensed">
         			<thead/>
 		      <tr>
+		      	<th>廳</th>
 				<th>開始時間</th>	
 				<th>結束日期</th>	
-				<th>場次日期</th>						
+				<th>場次日期</th>
+				<th>選擇</th>						
 			</tr>
 			<tr class="info" th:each="show : ${show}" >
-				<td th:text="${show.time_slot_beginning}"></td>
-				<td th:text="${show.time_slot_ending}"></td>
-				<td th:text="${show.time_slot_date}"></td>
-				<td><a th:href="@{ticketSelect(time_id=${show.time_slot_id})}" >選擇</a></td>
+				<td th:text="${show.hall_id.hall_id}"></td>
+				<td th:text="${show.time_slot_id.time_slot_beginning}"></td>
+				<td th:text="${show.time_slot_id.time_slot_ending}"></td>
+				<td th:text="${show.time_slot_id.time_slot_date}"></td>
+				<td><a th:href="@{ticketSelect(show_id=${show.show_id})}" >選擇</a></td>
         		</tr>
         		</table>
  		</form>

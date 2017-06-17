@@ -22,13 +22,14 @@ import javax.validation.constraints.Size;
 	private static final long serialVersionUID = 3316076651716569539L;	
 	
 	@Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long ticket_type;
 	 private String ticket_type_name ;	
 	 private int ticket_type_price;
 	 
 	 @OneToMany(mappedBy = "ticket_type_id")
 	 private List <Ticket> tickets;
+	 
+	 private int amount;
 	 
 	 public long getTicket_type(){
 		 return ticket_type;
@@ -56,7 +57,12 @@ import javax.validation.constraints.Size;
 	 public void setTicekts( List<Ticket> tickets){
 		 this.tickets = tickets;
 	 }
-	 
+	 public int getAmount(){
+		 return amount;
+	 }
+	 public void setAmount( int amount){
+		 this.amount = amount;
+	 }
 	 
 	 
 }

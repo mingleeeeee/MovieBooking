@@ -15,7 +15,7 @@
     		 <div th:substituteby="header::header"></div>
         
         <div class="container">	
-		<form th:action="@{/ticketSelect}" role ="form"  th:object="${Ticket}" method ="POST">
+		<form th:action="@{/seatSelect}" role ="form"  th:object="${Ticket}" method ="POST">
 				
 			<table class="table table-condensed">
   
@@ -37,7 +37,7 @@
 			          th:text="${tickt_type.amount}"></option>
 			</select>	
 				 </td>
-				 <td><a th:href="@{seatSelect(ticket_type_id=${ticket_type.ticket_type})}" >選擇</a></td>	
+				 <td><a th:href="@{ticketSelect(ticket_type_id=${ticket_type.ticket_type})}" >選擇</a></td>	
 				        		            
 		    </tr>
 		</table>

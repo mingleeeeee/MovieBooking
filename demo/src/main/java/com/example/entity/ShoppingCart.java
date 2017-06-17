@@ -14,16 +14,16 @@ public class ShoppingCart implements Serializable{
   * 
   */
  private static final long serialVersionUID = -5494311567944263493L;
- private List<Product> cart = new ArrayList<Product>();
+ private List<Order> cart = new ArrayList<Order>();
 
- public Iterable<Product> getCart(){
+ public Iterable<Order> getCart(){
    return cart;
  }
- public void add(Product product){
-  cart.add(product);
+ public void add(Order order){
+  cart.add(order);
  }
  public void cleanup(){
-  cart = new ArrayList<Product>();
+  cart = new ArrayList<Order>();
  }
  
 }

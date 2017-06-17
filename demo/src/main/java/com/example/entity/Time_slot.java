@@ -31,10 +31,7 @@ import javax.validation.constraints.Size;
 	 private int time_slot_ending; 
 	 private String time_slot_date;
 	 
-	 @OneToMany(mappedBy = "time_slot_id")
-	 private List<Time_slot> time_slot ;
-	 
-	 
+ 
 	 public long getTime_slot_id(){
 		 return time_slot_id;
 	 }
@@ -63,12 +60,7 @@ import javax.validation.constraints.Size;
 	 public void setTime_slot_date( String time_slot_date){
 		 this.time_slot_date = time_slot_date;
 	 }
-	 public List<Time_slot> getTime_slot(){
-		 return time_slot;
-	 }
-	 public void setTime_slot( List<Time_slot> time_slot){
-		 this.time_slot = time_slot;
-	 }
+	
 	 
 	 
 }

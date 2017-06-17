@@ -1,13 +1,10 @@
 package com.example.entity;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -29,8 +26,7 @@ import javax.persistence.Table;
 	 @ManyToOne
 	 @JoinColumn(name = "time_slot_id")
 	 private Time_slot time_slot_id;
-	 
-	 
+	  
 	 
 	 public long getShow_id(){
 		 return show_id;
@@ -56,7 +52,7 @@ import javax.persistence.Table;
 	 public void setTime_slot_id( Time_slot time_slot_id ){
 		 this.time_slot_id = time_slot_id;
 	 }
-	
+	 
 	 
 	
 }
