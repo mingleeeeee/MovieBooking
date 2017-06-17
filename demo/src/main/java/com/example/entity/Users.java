@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 
 	 @Entity
 	 @Table(name = "users")
-	 public class Member implements Serializable {
+	 public class Users implements Serializable {
 	 
 	 private static final long serialVersionUID = 3316076651716569539L;	
 	 @Id
@@ -34,6 +34,8 @@ import javax.validation.constraints.Size;
 	 private String username;
 	 @NotNull(message="不得空白")
 	 private String password;
+	 
+	 private int enabled;
 	 
 	 @NotNull(message="不得空白")
 	 private int birth;
@@ -119,5 +121,11 @@ import javax.validation.constraints.Size;
 	 
 	 public void setTel( String tel){
 		 this.tel = tel;
+	 }
+	 public int getEnabled(){
+		 return enabled;
+	 }
+	 public void setEnabled(){
+		 this.enabled = 1;
 	 }
 }

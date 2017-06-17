@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.dao.MemberDAO;
+import com.example.dao.UsersDAO;
 
 import java.sql.SQLException;
 
@@ -17,35 +17,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.entity.Member;
+import com.example.entity.Users;
 
-
-
+@Controller
 public class MemberController {
 	
 	@Autowired
-	MemberDAO memberdao;
+	UsersDAO usersdao; 
 	
 	@RequestMapping(value = "/registration" , method = RequestMethod.GET)
 	public ModelAndView openFormCreate(){
 		ModelAndView model = new ModelAndView("/registration");
-		model.addObject("Member",new Member());
+		model.addObject("Users",new Users());
 		return model;
 	}
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public ModelAndView processForm(@Valid @ModelAttribute("Member") Member member,  BindingResult bindingResult)
+	public ModelAndView processForm(@Valid @ModelAttribute("Users") Users users,  BindingResult bindingResult)
 			 {
 		ModelAndView model;
 		if (bindingResult.hasErrors()) {
 			
-	         model = new ModelAndView("registraction");	           	         
+	         model = new ModelAndView("registration");	           	         
 	         return model;
 	       }
-		model=new ModelAndView("redirect:/user/index");
-		model.addObject(member);	
-		memberdao.save(member);
-		return model;
-		
+		else{
+			model=new ModelAndView("redirect:/user/index");
+			model.addObject(users);	
+			usersdao.save(users);
+			return model;
+		}
 	}
 
 }
