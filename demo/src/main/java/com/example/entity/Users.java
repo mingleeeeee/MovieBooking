@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 	 private static final long serialVersionUID = 3316076651716569539L;	
 	 @Id
 	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 private long id;
+	 private long user_id;
 	 
 	 @NotNull(message="不得空白")
 	 @Size(min = 1,message="不得空白")
@@ -46,11 +46,11 @@ import javax.validation.constraints.Size;
 	 @NotNull(message="不得空白")
 	 private String tel;
 	 
-	 public long getId(){
-		 return this.id;
+	 public long getUser_id(){
+		 return this.user_id;
 	 }
-	 public void setId( long id){
-		 this.id = id;
+	 public void setUser_id( long user_id){
+		 this.user_id = user_id;
 	 }
 
 	 public String getLast_name(){
@@ -76,12 +76,11 @@ import javax.validation.constraints.Size;
 	 public void setNick_name( String nick_name){
 		 this.nick_name = nick_name;
 	 }
-	 
+	 public void setUsername(String username){
+		 this.username = username;
+	 }
 	 public String getUsername(){
 		 return username;
-	 }
-	 public void setM_username( String username){
-		 this.username = username;
 	 }
 	 
 	 public String getPassword(){

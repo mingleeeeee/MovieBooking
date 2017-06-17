@@ -29,7 +29,7 @@ public class FileUploadController {
 
     //After Spring 4.3, we can use @GetMapping instead of @RequestMapping(value = "/", method = RequestMethod.GET)
     //@RequestMapping(value = "/", method = RequestMethod.GET)
-    @GetMapping("/")
+    @GetMapping("/upload")
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("files", storageService
@@ -55,7 +55,7 @@ public class FileUploadController {
     }
 
     //After Spring 4.3, we can use @PostMapping instead of @RequestMapping(value = "/", method = RequestMethod.POST)
-    @PostMapping("/")
+    @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 

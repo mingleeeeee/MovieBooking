@@ -19,6 +19,7 @@ package com.example.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entity.Users;
@@ -54,6 +55,7 @@ public class MainController {
   model.addAttribute("loginError", true);
   return "login";
  }
+
  
  
 
