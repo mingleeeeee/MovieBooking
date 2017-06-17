@@ -21,7 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.entity.Member;
+import com.example.entity.Users;
 
 /**
  * @author Joe Grandja
@@ -36,7 +36,7 @@ public class MainController {
 
  @RequestMapping("/index")
  public String index() {
-  return "index";
+  return "movieSelect";
  }
 
  @RequestMapping("/user/index")

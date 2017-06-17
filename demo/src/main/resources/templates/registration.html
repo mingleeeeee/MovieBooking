@@ -16,69 +16,69 @@
         
         <div class="container">
  		
-		<form th:action="@{/registration}" role ="form"  th:object="${Member}" method ="POST">
+		<form th:action="@{/registration}" role ="form"  th:object="${Users}" method ="POST">
 				
 			<div class="form-group">
 			   <label>Your first name:</label>
-			   <input type="text" name="m_first_name" class="form-control" 
-			   th:field="*{m_first_name}" placeholder="first name.."/>
-			   <div th:if="${#fields.hasErrors('m_first_name')}" th:errors="*{m_first_name}"></div>
+			   <input type="text" name="first_name" class="form-control" 
+			   th:field="*{first_name}" placeholder="first name.."/>
+			   <div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"></div>
 				</div>
 				
 			 <div class="form-group">
 			   <label>Your last name:</label>
-			   <input type="text" name="m_last_name" class="form-control" 
-			   th:field="*{m_last_name}" placeholder="last name.."/>
-			   <div th:if="${#fields.hasErrors('m_last_name')}" th:errors="*{m_last_name}"></div>
+			   <input type="text" name="last_name" class="form-control" 
+			   th:field="*{last_name}" placeholder="last name.."/>
+			   <div th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}"></div>
 				</div>
 			 
 			 <div class="form-group">
 			   <label>Your nick name:</label>
 			   <input type="text" name="m_nick_name" class="form-control" 
-			   th:field="*{m_nick_name}" placeholder="nick name.."/>
-			   <div th:if="${#fields.hasErrors('m_nick_name')}" th:errors="*{m_nick_name}"></div>
+			   th:field="*{nick_name}" placeholder="nick name.."/>
+			   <div th:if="${#fields.hasErrors('nick_name')}" th:errors="*{nick_name}"></div>
 				</div>
 			 
 			 <div class="form-group">
 			   <label>Username:</label>
 			   <input type="text" name="m_username" class="form-control" 
-			   th:field="*{m_username}" placeholder="for login.."/>
-			   <div th:if="${#fields.hasErrors('m_username')}" th:errors="*{m_username}"></div>
+			   th:field="*{username}" placeholder="for login.."/>
+			   <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 				</div>
 			
 			<div class="form-group">
 			   <label>Password:</label>
 			   <input type="text" name="m_password" class="form-control" 
-			   th:field="*{m_password}" placeholder="for login.."/>
-			   <div th:if="${#fields.hasErrors('m_password')}" th:errors="*{m_password}"></div>
+			   th:field="*{password}" placeholder="for login.."/>
+			   <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 				</div>
 			 
 			<div class="form-group">
 			   <label>Your birthday:(XXXX/XX/XX)</label>
 			   <input type="text" name="m_birth" class="form-control" 
-			   th:field="*{m_birth}" placeholder="birthday.."/>
-			   <div th:if="${#fields.hasErrors('m_birth')}" th:errors="*{m_birth}"></div>
+			   th:field="*{birth}" placeholder="birthday.."/>
+			   <div th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"></div>
 				</div>
 				
 				<div class="form-group">
 			   <label>How old are you?:</label>
 			   <input type="text" name="m_year" class="form-control" 
-			   th:field="*{m_year}" placeholder=".."/>
-			   <div th:if="${#fields.hasErrors('m_birth')}" th:errors="*{m_birth}"></div>
+			   th:field="*{year}" placeholder=".."/>
+			   <div th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
 				</div>
 				
 				<div class="form-group">
 			   <label>Your address:</label>
-			   <input type="text" name="m_address" class="form-control" 
-			   th:field="*{m_address}" placeholder="address.."/>
-			   <div th:if="${#fields.hasErrors('m_address')}" th:errors="*{m_address}"></div>
+			   <input type="text" name="address" class="form-control" 
+			   th:field="*{address}" placeholder="address.."/>
+			   <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
 				</div>
 				
 				<div class="form-group">
 			   <label>Your telephone(cellphone):</label>
-			   <input type="text" name="m_tel" class="form-control" 
-			   th:field="*{m_tel}" placeholder="for contact.."/>
-			   <div th:if="${#fields.hasErrors('m_tel')}" th:errors="*{m_tel}"></div>
+			   <input type="text" name="tel" class="form-control" 
+			   th:field="*{tel}" placeholder="for contact.."/>
+			   <div th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"></div>
 				</div>
 		 	
 			   <button type="submit" class="btn btn-default" onclick="return confirm('確定送出?');">送出</button>

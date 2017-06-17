@@ -168,17 +168,14 @@ public class TicketController {
 	  return model;
 	 }
 	 
-	
 
-	
 	    @Autowired
 	    public TicketController(StorageService storageService) {
 	        this.storageService = storageService;
-	    }
+	    }    
 	    
-	    @GetMapping("/files/{filename:.+}")
 	    @ResponseBody
-	    @RequestMapping
+	    @RequestMapping(value= "/files/{filename:.+}",method = RequestMethod.POST )
 	    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
 	        Resource file = (Resource) storageService.loadAsResource(filename);
