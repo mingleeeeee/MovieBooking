@@ -22,7 +22,7 @@
       				<li class="active"><a th:href="@{/}">Page2</a></li> -->
     			</ul>
     			<ul class="nav navbar-nav navbar-right list-inline">
-    					<li sec:authorize="isAnonymous()"><a th:href="@{/moviePhoto}">
+    					<li sec:authorize="hasRule('RULE_ADMIN') "><a th:href="@{/moviePhoto}">
       					<span class="glyphicon glyphicon-log-in"></span> Movie Create</a>
       				</li>
     					<li sec:authorize="isAnonymous()"><a th:href="@{/movieSelect}">
