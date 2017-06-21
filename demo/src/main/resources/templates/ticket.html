@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    .row.width {width: 150px}
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<div th:substituteby="header::header"></div>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+      <p><a href="#"></a></p>
+    </div>
+    
+    
+    <div class="col-sm-8 text-left"> 
+  
+      <div class="container">				
+			<table class="table table-hover " >
+  
+		    <thead/>
+		      <tr>
+				<th>票種</th>
+				<th>價格</th>
+				<th>數量</th>
+		
+			</tr>
+		    <tr th:each="ticket_type : ${ticket_type} " th:object="${ticket_type}">
+		        <td th:text="${ticket_type.ticket_type_name}"></td>
+		        <td th:text="${ticket_type.ticket_type_price}"></td>
+		        <td>
+		        <form th:action="@{/shoppingCartAdd}" role ="form" method ="POST">
+			       <select id = "amount" class="form-control" name="amount"  onchange = "this.form.submit()">
+    					<option value="0">0</option>
+    					<option value="1">1</option>
+   				 	<option value="2">2</option>
+   					<option value="3">3</option>
+    					<option value="4">4</option>
+    					<option value="5">5</option>
+    					<option value="6">6</option>
+    					<option value="7">7</option>
+    					<option value="8">8</option>
+    					<option value="9">9</option>
+    					<option value="10">10</option>
+  				</select>
+  				<input type = "hidden" name="ticket_type_id" th:value="*{ticket_type}"/>
+  				<input type = "hidden" name="ticket_type_name" th:value="*{ticket_type_name}"/>
+  				<input type = "hidden" name="price" th:value="*{ticket_type_price}"/>
+				 
+				 </form>
+				 </td>					 			        		            
+		    </tr>		    
+		</table>
+	
+    </div>
+    </div>
+
+    <div class="col-sm-2 sidenav">
+      
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  		
+		<table class="table table-hover">
+			<tr>
+				<th>票種</th>
+				<th>價格</th>
+				<th>數量</th>
+				<th>合計</th>
+				<th></th>
+				<th></th>
+			</tr>
+		    <tr th:each="Order : ${@shoppingCart.cart} " th:object="${Order}">
+		        <td th:text="*{ticket_type_name}"></td>
+		        <td th:text="*{price}"></td>
+		        <td th:text="*{amount}"></td>
+		        <td th:text="*{total}"></td>
+		       <td><a th:href="@{shoppingCartDelete(id=${Order.id})}" >刪除</a></td>
+		    </tr>
+		</table>	
+</footer>
+
+</body>
+</html>

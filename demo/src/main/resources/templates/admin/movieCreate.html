@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <link rel="stylesheet" href="bootstrap.min.css"/>
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    </head>
+<body>
+ <div th:substituteby="header::header"></div>
+<div class = "contaniner">
+
+ <div>
+  	<form role ="form" th:action="@{/admin/movieCreate}" enctype="multipart/form-data" th:object="${Movie}" method ="post">
+	
+		<div class="form-group">
+				<label>類型: </label>
+				<select name = "movieCategory" class="form-control">
+  					<option th:each="movieCategory : ${allMovieCategories}" 
+         					th:value="${movieCategory.id}" 
+          					th:text="${movieCategory.name}">
+          			</option>
+          		</select>
+			</div>
+		
+	
+		<div class="form-group">
+	   <br/><label>ID: </label>
+	   <input type="text" class="form-control" name="movie_id" th:field="*{movie_id}"/><br/>
+	   </div>
+	   
+	   <div class="form-group">
+	   <br/><label>Name: </label>
+	   <input type="text" class="form-control" name = "movie_name" th:field="*{movie_name}"/><br/>   
+	   </div>
+	   
+	   <div class="form-group">
+	   <br/><label>photo: </label>
+	   <input type="file" class="form-control" name="photoFile" /><br/>
+	   </div>
+ 		<input type="submit" value="Submit"/>
+
+ 	</form>
+ </div>
+
+ </div>
+
+</body>
+</html>

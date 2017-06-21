@@ -1,18 +1,90 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Index</title>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
-  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}"/>
-  		<link rel="stylesheet" href="/css/general.css"/>
-  	</head>
-<body>
-	<div th:substituteby="header::header"></div>
-        
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Movie</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="css/main.css" type="text/css"/>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    .imagesize {
+    		height: 370px;
+    		width: 100px;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Movie</h1>      
+    <p></p>
+  </div>
+</div>
+
+ <div th:substituteby="header::header"></div>
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4" th:each="movie : ${movie} " >
+      <div class="panel panel-primary" >
+        <div class="panel-heading" th:text="${movie.movie_name}"></div>
+        <div class="panel-body"><img th:src="'files/'+ ${movie.photo}" width="100px" class="img-responsive imagesize" style="width:100%" alt="Image"/></div>
+        <div class="panel-footer"><a th:href="@{showSelect(movie_id=${movie.movie_id})}">選擇</a></div>
+      </div>
+    </div>
+    
+   
+  </div>
+</div><br/>
+
+<!--  
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">BLACK FRIDAY DEAL</div>
+        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"/></div>
+        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">BLACK FRIDAY DEAL</div>
+        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"/></div>
+        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-primary">
+        <div class="panel-heading">BLACK FRIDAY DEAL</div>
+        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"/></div>
+        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+-->
+
 </body>
 </html>

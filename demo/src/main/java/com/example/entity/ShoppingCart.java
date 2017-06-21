@@ -16,7 +16,7 @@ public class ShoppingCart implements Serializable{
  private static final long serialVersionUID = -5494311567944263493L;
  private List<Order> cart = new ArrayList<Order>();
 
- public Iterable<Order> getCart(){
+ public List<Order> getCart(){
    return cart;
  }
  public void add(Order order){

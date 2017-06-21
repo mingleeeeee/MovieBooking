@@ -29,7 +29,7 @@ import javax.validation.constraints.Size;
 	 @OneToMany(mappedBy = "ticket_type_id")
 	 private List <Ticket> tickets;
 	 
-	 private int amount;
+	
 	 
 	 public long getTicket_type(){
 		 return ticket_type;
@@ -57,12 +57,7 @@ import javax.validation.constraints.Size;
 	 public void setTicekts( List<Ticket> tickets){
 		 this.tickets = tickets;
 	 }
-	 public int getAmount(){
-		 return amount;
-	 }
-	 public void setAmount( int amount){
-		 this.amount = amount;
-	 }
+	
 	 
 	 
 }

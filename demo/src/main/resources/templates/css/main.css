@@ -11,3 +11,7 @@ p.error {
 div.logout {
     float: right;
 }
+.imagesize {
+	height : 324px;
+	width : 224px;
+}

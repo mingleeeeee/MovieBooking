@@ -22,10 +22,19 @@
       				<li class="active"><a th:href="@{/}">Page2</a></li> -->
     			</ul>
     			<ul class="nav navbar-nav navbar-right list-inline">
-    					<li sec:authorize="isAnonymous()"><a th:href="@{/moviePhoto}">
+    					<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/movieCreate}">
       					<span class="glyphicon glyphicon-log-in"></span> Movie Create</a>
       				</li>
-    					<li sec:authorize="isAnonymous()"><a th:href="@{/movieSelect}">
+      				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/showCreate}">
+      					<span class="glyphicon glyphicon-log-in"></span> Show Create</a>
+      				</li>
+      			     			    				
+      				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/movieList}">
+      					<span class="glyphicon glyphicon-log-in"></span> MovieList</a>      				
+      				</li>
+      				
+      				
+    					<li ><a th:href="@{/movieSelect}">
       					<span class="glyphicon glyphicon-log-in"></span> Movie</a>
       				</li>
     					<li sec:authorize="isAnonymous()"><a th:href="@{/registration}">

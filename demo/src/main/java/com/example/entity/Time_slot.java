@@ -27,8 +27,8 @@ import javax.validation.constraints.Size;
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private long time_slot_id;
 	 
-	 private int time_slot_beginning;
-	 private int time_slot_ending; 
+	 private String time_slot_beginning;
+	 private String time_slot_ending; 
 	 private String time_slot_date;
 	 
  
@@ -40,17 +40,17 @@ import javax.validation.constraints.Size;
 		 this.time_slot_id = time_slot_id;
 	 }
 	 
-	 public int getTime_slot_beginning (){
+	 public String getTime_slot_beginning (){
 		return time_slot_beginning;
 	 }
-	 public void setTime_slot_beginning( int time_slot_beginning){
+	 public void setTime_slot_beginning( String time_slot_beginning){
 		 this.time_slot_beginning = time_slot_beginning;
 	 }
 	 
-	 public int getTime_slot_ending(){
+	 public String getTime_slot_ending(){
 		return time_slot_ending; 
 	 }
-	 public void setTime_slot_ending( int time_slot_ending){
+	 public void setTime_slot_ending( String time_slot_ending){
 		 this.time_slot_ending = time_slot_ending;
 	 }
 	 

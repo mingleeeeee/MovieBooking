@@ -32,7 +32,7 @@ import javax.validation.constraints.Size;
 	 @JoinColumn(name = "ticket_type_id")
 	 private Ticket_type ticket_type_id;
 	 
-	 
+	 private int amount;
 	 
 	 public long getTicket_id(){
 		 return ticket_id;
@@ -55,7 +55,12 @@ import javax.validation.constraints.Size;
 	 public void setTicket_type_id( Ticket_type ticket_type_id){
 		 this.ticket_type_id = ticket_type_id; 
 	 }
-	 
+	 public int getAmount(){
+		 return amount;
+	 }
+	 public void setAmount( int amount){
+		 this.amount = amount;
+	 }
 	 
 	 
 	 

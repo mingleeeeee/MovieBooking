@@ -17,7 +17,18 @@
 <div class = "contaniner">
 
  <div>
-  	<form role ="form" th:action="@{/moviePhoto}" enctype="multipart/form-data" th:object="${Movie}" method ="post">
+  	<form role ="form" th:action="@{/admin/movieUpdate}" enctype="multipart/form-data" th:object="${Movie}" method ="post">
+	
+		<div class="form-group">
+				<label>類型: </label>
+				<select name = "movieCategory" class="form-control">
+  					<option th:each="movieCategory : ${allMovieCategories}" 
+         					th:value="${movieCategory.id}" 
+          					th:text="${movieCategory.name}">
+          			</option>
+          		</select>
+			</div>
+		
 	
 		<div class="form-group">
 	   <br/><label>ID: </label>
