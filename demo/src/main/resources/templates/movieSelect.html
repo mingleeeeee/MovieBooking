@@ -1,36 +1,81 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Login page</title>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
-  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}"/>
-  		<link rel="stylesheet" href="/css/general.css"/>
-  	</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Movie</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="css/main.css" type="text/css"/>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    .imagesize {
+    		height: 400px;
+    		width: 100px;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
 <body>
-	<div th:substituteby="header::header"></div>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Movie</h1>      
+    <p></p>
+  </div>
+</div>
+
+ <div th:substituteby="header::header"></div>
+
+<div class="container">   
+	
+	<div>
+	<form th:action="@{/movieRetrieveByCategory}" method ="post" >
+		<br/><label></label>
+		<select name = "movieCategory" th:field="${movieCategory.id}" class="form-control" onchange = "this.form.submit()">
+		  <option th:each="movieCategory : ${allMovieCategories}" 
+		          th:value="${movieCategory.id}" 
+		          th:text="${movieCategory.name}"></option>
+		</select>
+		
+		</form>
+</div>
+<br/>
+	
+	 
+  <div class="row">
+    <div class="col-sm-4" th:each="movie : ${movie} " >
+      <div class="panel panel-primary" >
+        <div class="panel-heading" th:text="${movie.movie_name}"></div>
+        <div class="panel-body"><img th:src="'files/'+ ${movie.photo}" width="100px" class="img-responsive imagesize" style="width:100%" alt="Image"/></div>
+        <div class="panel-footer"><a th:href="@{showSelect(movie_id=${movie.movie_id})}">選擇</a></div>
         
-        <div class="container">
-        
-        <form th:action="@{/movieSelect}" role = "form" th:object="${movie}" method = "POST">
-        		<table class="table table-condensed">
-        			<thead/>
-		      <tr>
-				<th>電影</th>
-				<th>封面</th>
-				<th>選擇</th>							
-			</tr>
-			<tr class="info" th:each="movie : ${movie} ">
-				<td th:text="${movie.movie_name}"></td>
-				<td><img th:src="'files/'+ ${movie.photo}" width="100px"/></td>
-				<td>
-				<a th:href="@{showSelect(movie_id=${movie.movie_id})}">選擇</a></td>
-			</tr>
-        		</table>
-        </form>
-        </div>
+        <div sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/movieUpdate(id=${movie.movie_id})}"><button type="button" class="btn btn-primary" onclick="return confirm('確定要修改嗎?');" >修改</button></a> 
+		<a th:href="@{/admin/movieDelete(id=${movie.movie_id})}"><button type="button" class="btn btn-danger" onclick="return confirm('確定要刪除嗎?');">刪除</button></a></div>
+      </div>
+    </div>
+    
+   
+  </div>
+</div><br/>
+
+
+
 </body>
 </html>

@@ -37,7 +37,7 @@ public class MainController {
 
  @RequestMapping("/index")
  public String index() {
-  return "movieSelect";
+  return "index";
  }
 
  @RequestMapping("/user/index")
@@ -56,7 +56,14 @@ public class MainController {
   return "login";
  }
 
- 
+ @RequestMapping("/index3")
+ public String login3() {
+  return "index3";
+ }
+ @RequestMapping("/index4")
+ public String login4() {
+  return "index4";
+ }
  
 
 }

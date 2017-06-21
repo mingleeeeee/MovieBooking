@@ -17,6 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	.authorizeRequests()
     	.antMatchers("/css/**", "/index").permitAll()  
     	.antMatchers("/shoppingCartList/**").hasRole("USER")
+    	.antMatchers("/admin/moviePhoto/**").hasRole("ADMIN")
     	.and()
     	.formLogin()
     	.loginPage("/login").failureUrl("/login-error");

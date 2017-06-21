@@ -29,7 +29,11 @@ import org.springframework.web.multipart.MultipartFile;
 	 
 	 private transient MultipartFile photoFile;
 	 private String photo;
+	 private String content;
 	 
+	 @ManyToOne
+	@JoinColumn(name = "category")
+	private MovieCategory movieCategory;
 	 
 	 @OneToMany(mappedBy = "movie_id")
 	 private List<Show> movie_show;
@@ -75,6 +79,18 @@ import org.springframework.web.multipart.MultipartFile;
 	 }
 	 public void setTime_slot( List<Time_slot> time_slot){
 		 this.time_slot = time_slot;
+	 }
+	 public String getContent(){
+		 return content;
+	 }
+	 public void setContent( String content){
+		 this.content = content;
+	 }
+	 public MovieCategory getMovieCategory(){
+		 return movieCategory;
+	 }
+	 public void setMovieCategory( MovieCategory movieCategory){
+		 this.movieCategory = movieCategory;
 	 }
 	 
 }

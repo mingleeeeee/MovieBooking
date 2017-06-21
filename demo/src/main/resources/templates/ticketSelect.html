@@ -10,12 +10,21 @@
   		<link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}"/>
   		<link rel="stylesheet" href="/css/general.css"/>
   	</head>
+  	
+  	<script type="text/javascript">
+	function getAmount(){
+		var amount = form.amount.value;
+	}
+  	function passValue(amount) {
+  	  document.getElementById('amount') = amount;
+  	}
+	</script>
     <body>
     	
     		 <div th:substituteby="header::header"></div>
         
         <div class="container">	
-		<form th:action="@{/ticketSelect}" role ="form"  th:object="${Ticket}" method ="POST">
+		
 				
 			<table class="table table-condensed">
   
@@ -27,22 +36,54 @@
 				<th>選擇</th>
 		
 			</tr>
-		    <tr class="info" th:each="ticket_type : ${ticket_type} ">
+		    <tr class="info" th:each="ticket_type : ${ticket_type} " th:object="${ticket_type}">
 		        <td th:text="${ticket_type.ticket_type_name}"></td>
 		        <td th:text="${ticket_type.ticket_type_price}"></td>
 		        <td>
-			       <select name = "amount" >
-			  		 <option th:each="ticket_type : ${ticket_type} " 
-			          th:value="${ticket_type.amount }" 
-			          th:text="${tickt_type.amount}"></option>
-			</select>	
-				 </td>
-				 <td><a th:href="@{seatSelect(ticket_type_id=${ticket_type.ticket_type})}" >選擇</a></td>	
-				        		            
+		        <form th:action="@{/shoppingCartAdd}" role ="form" method ="POST">
+			       <select id = "amount" class="form-control" name="amount"  onchange = "this.form.submit()">
+    					<option value="0">0</option>
+    					<option value="1">1</option>
+   				 	<option value="2">2</option>
+   					<option value="3">3</option>
+    					<option value="4">4</option>
+    					<option value="5">5</option>
+    					<option value="6">6</option>
+    					<option value="7">7</option>
+    					<option value="8">8</option>
+    					<option value="9">9</option>
+    					<option value="10">10</option>
+  				</select>
+  				<input type = "hidden" name="ticket_type_id" th:value="*{ticket_type}"/>
+  				<input type = "hidden" name="ticket_type_name" th:value="*{ticket_type_name}"/>
+  				<input type = "hidden" name="price" th:value="*{ticket_type_price}"/>
+				 
+				 </form>
+				 </td>	
+				 			        		            
 		    </tr>
+		    
 		</table>
 				
-	</form>
+		<table class="table table-striped">
+			<tr class="success">
+				<th>票種</th>
+				<th>價格</th>
+				<th>數量</th>
+				<th>合計</th>
+				<th></th>
+				<th></th>
+			</tr>
+		    <tr class="info" th:each="Order : ${@shoppingCart.cart} " th:object="${Order}">
+		        <td th:text="*{ticket_type_name}"></td>
+		        <td th:text="*{price}"></td>
+		        <td th:text="*{amount}"></td>
+		        <td th:text="*{total}"></td>
+		       <td><a th:href="@{shoppingCartDelete(id=${Order.id})}" >刪除</a></td>
+		    </tr>
+		</table>		
+		<input type ="button" onclick="history.back()" value="回到上一頁"></input>	
+			
 	</div>
     
           
