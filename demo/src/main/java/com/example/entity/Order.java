@@ -26,6 +26,7 @@ public class Order implements Serializable {
 	private int price;
 	private int amount;
 	private int total;
+	private int[ ] seat = new int [10];
 	
 	
 	public long getId(){
@@ -76,6 +77,15 @@ public class Order implements Serializable {
 	}
 	public void setTotal( int total ){
 		this.total = total;
+	}
+	public int[] getSeat(){
+		return seat;
+	}
+	public void setSeat( int[ ] seat ){
+		this.seat = seat;
+	}
+	public void setSeat( int index , int seat){
+		this.seat[index] = seat;
 	}
 	//HttpServletRequest request
 }

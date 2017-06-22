@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content=""/>
+<meta name="author" content=""/>
+<title>確認訂單</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/general.css"
+	th:href="@{/css/general.css}" />
+</head>
+<body>
+<div th:substituteby="header::header"></div>
+<div class="container topMove">
+		<div class="panel panel-default">
+			<div class="panel-body zoom" align="center">確認訂單</div>
+		</div>
+	<form th:action="check-out" th:object="${Show}">
+	<table class="table table-hover">
+		<tr>
+			<td>電影名稱:</td>
+			<td th:text="*{movie_id.movie_name}"></td>
+		</tr>
+		<tr>
+			<td>影廳:</td>
+			<td th:text="*{hall_id.hall_id}"></td>
+		</tr>
+		<tr>
+			<td>開始時間:</td>
+			<td th:text="*{time_slot_id.time_slot_beginning}"></td>
+		</tr>
+		<tr>
+			<td>結束時間:</td>
+			<td th:text="*{time_slot_id.time_slot_ending}"></td>
+		</tr>
+		<tr>
+			<td>日期:</td>
+			<td th:text="*{time_slot_id.time_slot_date}"></td>
+		</tr>
+		<tr>
+			<td>座位:</td>
+			<td th:text="${selectedSeats}"></td>
+		</tr>
+		<tr>
+			<td>票種:</td>
+			<td th:text="${ticket_type}"></td>
+		</tr>
+		<tr>
+			<td>總額:</td>
+			<td th:text="${total}"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><a th:href="@{/end-of-process}"><button type="button" class="btn btn-primary">確定購買</button></a></td>
+		</tr>
+	</table>
+</form>
+</div>
+</body>
+</html>

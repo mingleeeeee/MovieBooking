@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /*
  * Copyright 2002-2016 the original author or authors.
  *
@@ -22,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.dao.MovieDAO;
+import com.example.entity.Movie;
+import com.example.entity.MovieCategory;
 import com.example.entity.Users;
 
 /**
@@ -30,16 +35,23 @@ import com.example.entity.Users;
 @Controller
 public class MainController {
 
+	@Autowired
+	MovieDAO moviedao;
+	
+	
   @RequestMapping("/")
  public String root() {
   return "redirect:/index";
  }
 
  @RequestMapping("/index")
- public String index() {
-  return "index";
+ public ModelAndView index() {
+	 ModelAndView model = new ModelAndView("index");			
+	 Iterable<Movie> movie = moviedao.findAll(); 
+	 model.addObject("movie", movie);		
+	 return model;
  }
-
+ 
  @RequestMapping("/user/index")
  public String userIndex() {
   return "user/index";
