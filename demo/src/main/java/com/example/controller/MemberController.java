@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.dao.AuthorityDAO;
 import com.example.dao.UsersDAO;
 
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.entity.Authority;
 import com.example.entity.Users;
 
 @Controller
@@ -24,6 +26,9 @@ public class MemberController {
 	
 	@Autowired
 	UsersDAO usersdao; 
+	
+	@Autowired
+	AuthorityDAO authoritydao;
 	
 	@RequestMapping(value = "/registration" , method = RequestMethod.GET)
 	public ModelAndView openFormCreate(){
@@ -43,7 +48,11 @@ public class MemberController {
 		else{
 			model=new ModelAndView("redirect:/user/index");
 			model.addObject(users);	
+			Authority authority = new Authority();
+			authority.setUser(users);
+			
 			usersdao.save(users);
+			authoritydao.save(authority);
 			return model;
 		}
 	}
