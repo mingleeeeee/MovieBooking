@@ -25,5 +25,9 @@ public class ShoppingCart implements Serializable{
  public void cleanup(){
   cart = new ArrayList<Order>();
  }
+public void delete(int i) {
+	cart.remove(i) ;
+	
+}
  
 }

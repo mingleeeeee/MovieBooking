@@ -46,13 +46,13 @@ public class MemberController {
 	         return model;
 	       }
 		else{
-			model=new ModelAndView("redirect:/user/index");
-			model.addObject(users);	
 			Authority authority = new Authority();
 			authority.setUser(users);
-			
 			usersdao.save(users);
 			authoritydao.save(authority);
+			model=new ModelAndView("registration_success");
+			model.addObject(users);	
+			
 			return model;
 		}
 	}

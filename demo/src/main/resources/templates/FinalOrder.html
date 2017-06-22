@@ -57,59 +57,28 @@
     
     <div class="col-sm-8 text-left"> 
   
-      <div class="container">				
-			<table class="table table-hover " >
-  
-		    <thead/>
-		      <tr>
-				<th>票種</th>
-				<th>價格</th>
-				<th>數量</th>
-		
+      <div class="container">
+      		<table class="table table-hover">
+			<tr>
+				<th>電影</th>
+				<th>場次開始</th>
+				<th>場次結束</th>
+				<th>場次日期</th>
+				<th>廳</th>
+				<th>座位</th>
+				
 			</tr>
-		    <tr th:each="ticket_type : ${ticket_type} " th:object="${ticket_type}">
-		        <td th:text="${ticket_type.ticket_type_name}"></td>
-		        <td th:text="${ticket_type.ticket_type_price}"></td>
-		        <td>
-		        <form th:action="@{/shoppingCartAdd}" role ="form" method ="POST">
-			       <select id = "amount" class="form-control" name="amount"  onchange = "this.form.submit()">
-    					<option value="0">0</option>
-    					<option value="1">1</option>
-   				 	<option value="2">2</option>
-   					<option value="3">3</option>
-    					<option value="4">4</option>
-    					<option value="5">5</option>
-    					<option value="6">6</option>
-    					<option value="7">7</option>
-    					<option value="8">8</option>
-    					<option value="9">9</option>
-    					<option value="10">10</option>
-  				</select>
-  				<input type = "hidden" name="ticket_type_id" th:value="*{ticket_type}"/>
-  				<input type = "hidden" name="ticket_type_name" th:value="*{ticket_type_name}"/>
-  				<input type = "hidden" name="price" th:value="*{ticket_type_price}"/>
-			 </form>
-				 
-				 </td>					 			        		            
-		    </tr>		  
-		    
-		</table>
-			
-		 <a href="seatSelect"><button id="btnCheckout" name="btnCheckout" class="btn btn-primary"> 下一步 </button></a> 
-		   
-	
-    </div>
-    </div>
-
-    <div class="col-sm-2 sidenav">
-      
-    </div>
-  </div>
-</div>
-
-<footer class="container-fluid text-center">
-  		
-		<table class="table table-hover">
+		    <tr th:each="Order : ${@shoppingCart.cart} " th:object="${Order}">
+		        <td th:text="*{ticket_type_name}"></td>
+		        <td th:text="*{price}"></td>
+		        <td th:text="*{amount}"></td>
+		        <td th:text="*{total}"></td>
+		       <td><a th:href="@{shoppingCartDelete(id=${Order.id})}" >刪除</a></td>
+		    </tr>
+		</table>	
+      				
+      				
+			<table class="table table-hover">
 			<tr>
 				<th>票種</th>
 				<th>價格</th>
@@ -126,7 +95,19 @@
 		       <td><a th:href="@{shoppingCartDelete(id=${Order.id})}" >刪除</a></td>
 		    </tr>
 		</table>	
-		 
+	
+    </div>
+    </div>
+
+    <div class="col-sm-2 sidenav">
+      
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  		
+		
 </footer>
 
 </body>

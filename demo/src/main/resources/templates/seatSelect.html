@@ -9,40 +9,328 @@
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   		<link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}"/>
   		<link rel="stylesheet" href="/css/general.css"/>
+  	
+  	<style>
+		  		
+		.seatSelection {
+		  text-align: center;
+		  padding: 5px;
+			margin: 15px;}
+		
+		.seatsReceipt {text-align: center;}
+		
+		.seatNumber {
+			display: inline;
+			padding: 10px;
+			background-color: #5c86eb;
+			color: #FFF;
+			border-radius: 5px;
+			cursor: default;
+			height: 25px;
+			width: 25px;
+			line-height: 25px;
+			text-align: center;
+		 }
+		
+		.seatRow {padding: 10px;}
+		
+		.seatSelected {
+			background-color: lightgreen;
+			color: black;
+		 }
+		
+		.seatUnavailable {background-color: gray;}
+		
+		.seatRowNumber {
+			clear: none;
+			display: inline;
+		 }
+		
+		.hidden {display: none;}
+		
+		.seatsAmount {max-width: 2em;}
+  		
+ </style>
+ 
+  	 <script type="text/javascript">
+  	 // Clicking any seat
+     $(".seatNumber").click(
+         function () {
+             if (!$(this).hasClass("seatUnavailable")){
+                 // If selected, unselect it
+                 if ($(this).hasClass("seatSelected")) {
+                     var thisId = $(this).attr('id');
+                     var price = $('#seatsList .' + thisId).val();
+                     $(this).removeClass("seatSelected");
+                     $('#seatsList .' + thisId).remove();
+                     // Calling functions to update checkout total and seat counter.
+                     removeFromCheckout(price);
+                     refreshCounter();
+                 }
+                 else {
+                     // else, select it
+                     // getting values from Seat
+                     var thisId = $(this).attr('id');
+                     var id = thisId.split("_");
+                     var price = $(this).attr('value');
+                     var seatDetails = "Row: " + id[0] + " Seat:" + id[1] + " Price:CA$:" + price;
+                     
+                    
+                     var freeSeats = parseInt($('.freeSeats').first().text());
+                     var selectedSeats = parseInt($(".seatSelected").length);
+                     
+                 
+                     // Adding this seat to the list
+                     var seatDetails = "Row: " + id[0] + " Seat:" + id[1] + " Price:CA$:" + price;
+                     $("#seatsList").append('<li value=' + price + ' class=' + thisId + '>' + seatDetails + "  " + "<button> id='remove:" + thisId + "'+ class='btn btn-default btn-sm removeSeat' value='" + price + "'><strong>X</strong></button></li>");
+                     $(this).addClass("seatSelected");
+                 
+                     addToCheckout(price);
+                     refreshCounter();
+                 }
+             }
+         }
+     );
+     // Clicking any of the dynamically-generated X buttons on the list
+     $(document).on('click', ".removeSeat", function () {
+         // Getting the Id of the Seat
+         var id = $(this).attr('id').split(":");
+         var price = $(this).attr('value')
+         $('#seatsList .' + id[1]).remove();
+         $("#" + id[1] + ".seatNumber").removeClass("seatSelected");
+         removeFromCheckout(price);
+         refreshCounter();
+       }
+   );
+     // Show tooltip on hover.
+     $(".seatNumber").hover(
+         function () {
+             if (!$(this).hasClass("seatUnavailable")) {
+                 var id = $(this).attr('id');
+                 var id = id.split("_");
+                 var price = $(this).attr('value');
+                 var tooltip = "Row: " + id[0] + " Seat:" + id[1] + " Price:CA$:" + price;
+
+                 $(this).prop('title', tooltip);
+             } else
+             {
+                 $(this).prop('title', "Seat unavailable");
+             }
+         }
+         );
+     // Function to refresh seats counter
+     function refreshCounter() {
+         $(".seatsAmount").text($(".seatSelected").length); 
+     }
+     // Add seat to checkout
+     function addToCheckout(thisSeat) {
+         var seatPrice = parseInt(thisSeat);
+         var num = parseInt($('.txtSubTotal').text());
+         num += seatPrice;
+         num = num.toString();
+         $('.txtSubTotal').text(num);
+     }
+     // Remove seat from checkout
+     function removeFromCheckout(thisSeat) {
+         var seatPrice = parseInt(thisSeat);
+         var num = parseInt($('.txtSubTotal').text());
+         num -= seatPrice;
+         num = num.toString();
+         $('.txtSubTotal').text(num);
+     }
+
+     // Clear seats.
+     $("#btnClear").click(
+         function () {
+             $('.txtSubTotal').text(0);
+             $(".seatsAmount").text(0);
+             $('.seatSelected').removeClass('seatSelected');
+             $('#seatsList li').remove();
+         }
+     );
+    
+  	</script>
+
   	</head>
     <body>
     	
     		 <div th:substituteby="header::header"></div>
         
         <div class="container">	
-		<form th:action="@{/seatSelect}" role ="form"  th:object="${Ticket}" method ="POST">
+        
+        <div>
+        	<div class="seatSelection col-lg-12">
+                        <p class="seatSection">
+                     
+                            
+                        </p>
+                        <div class="seatsChart col-lg-6">
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 1
+                                </div>
+                                <div id="1_1" title="" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber">1</div>
+                                <div id="1_2" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">2</div>
+                                <div id="1_3" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">3</div>
+                                <div id="1_4" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">4</div>
+                                <div id="1_5" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">5</div>
+                                <div id="1_6" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">6</div>
+                                <div id="1_7" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">7</div>
+                                <div id="1_8" role="checkbox" value="45" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">8</div>
+
+
+                            </div>
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 2
+                                </div>
+                                <div id="2_1" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">9</div>
+                                <div id="2_2" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber">10</div>
+                                <div id="2_3" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">11</div>
+                                <div id="2_4" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">12</div>
+                                <div id="2_5" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">13</div>
+                                <div id="2_6" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">14</div>
+                                <div id="2_7" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">15</div>
+                                <div id="2_8" role="checkbox" value="42" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber">16</div>
+
+                            </div>
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 3
+                                </div>
+                                <div id="3_1" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber">17</div>
+                                <div id="3_2" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">18</div>
+                                <div id="3_3" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber">19</div>
+                                <div id="3_4" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">20</div>
+                                <div id="3_5" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">21</div>
+                                <div id="3_6" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">22</div>
+                                <div id="3_7" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">21</div>
+                                <div id="3_8" role="checkbox" value="38" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">24</div>
+
+                            </div>
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 4
+                                </div>
+                                <div id="4_1" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">25</div>
+                                <div id="4_2" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">26</div>
+                                <div id="4_3" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">27</div>
+                                <div id="4_4" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">28</div>
+                                <div id="4_5" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">29</div>
+                                <div id="4_6" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber">30</div>
+                                <div id="4_7" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">31</div>
+                                <div id="4_8" role="checkbox" value="30" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">32</div>
+
+                            </div>
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 5
+                                </div>
+                                <div id="5_1" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">33</div>
+                                <div id="5_2" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">34</div>
+                                <div id="5_3" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">35</div>
+                                <div id="5_4" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">36</div>
+                                <div id="5_5" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">37</div>
+                                <div id="5_6" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">38</div>
+                                <div id="5_7" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">39</div>
+                                <div id="5_8" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">40</div>
+                            </div>
+                            
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 6
+                                </div>
+                                <div id="5_1" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">41</div>
+                                <div id="5_2" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">42</div>
+                                <div id="5_3" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">43</div>
+                                <div id="5_4" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">44</div>
+                                <div id="5_5" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">45</div>
+                                <div id="5_6" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">46</div>
+                                <div id="5_7" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">47</div>
+                                <div id="5_8" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">48</div>
+                            </div>
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 7
+                                </div>
+                                <div id="5_1" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">49</div>
+                                <div id="5_2" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">50</div>
+                                <div id="5_3" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">51</div>
+                                <div id="5_4" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">52</div>
+                                <div id="5_5" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">53</div>
+                                <div id="5_6" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">54</div>
+                                <div id="5_7" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">55</div>
+                                <div id="5_8" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">56</div>
+                            </div>
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 8
+                                </div>
+                                <div id="5_1" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">57</div>
+                                <div id="5_2" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">58</div>
+                                <div id="5_3" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">59</div>
+                                <div id="5_4" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">60</div>
+                                <div id="5_5" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">61</div>
+                                <div id="5_6" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">62</div>
+                                <div id="5_7" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">63</div>
+                                <div id="5_8" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">64</div>
+                            </div>
+                            
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 9
+                                </div>
+                                <div id="5_1" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">65</div>
+                                <div id="5_2" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">66</div>
+                                <div id="5_3" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">67</div>
+                                <div id="5_4" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">68</div>
+                                <div id="5_5" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">69</div>
+                                <div id="5_6" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">70</div>
+                                <div id="5_7" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">71</div>
+                                <div id="5_8" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">72</div>
+                            </div>
+                            
+                            <div class="seatRow">
+                                <div class="seatRowNumber">
+                                    Row 10
+                                </div>
+                                <div id="5_1" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">73</div>
+                                <div id="5_2" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">74</div>
+                                <div id="5_3" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">75</div>
+                                <div id="5_4" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">76</div>
+                                <div id="5_5" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">77</div>
+                                <div id="5_6" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber  ">78</div>
+                                <div id="5_7" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">79</div>
+                                <div id="5_8" role="checkbox" value="28" aria-checked="false" focusable="true" tabindex="-1" class=" seatNumber ">80</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+					
 				
-			<table class="table table-condensed">
-  
-		    <thead/>
-		      <tr>
-				<th>票種</th>
-				<th>價格</th>
-				<th>數量</th>
-				<th>選擇</th>
+               
+                </div>
+                
+        	<form th:action="@{/seatSelect}" role = "form"  method = "POST">
+						<div>
+						<label>需選<span th:text= "${amount}" />位</label>
+						<select name = "selectedSeat"  class="form-control"  multiple ="2" size="8">
+						  <option th:each="seat : ${seat}" 
+						          th:value="${seat.seat_id.seat_id}" 
+						          th:text="${seat.seat_id.seat_id}"></option>
+		</select>
+						</div>
+						 <div class="checkout col-lg-offset-6">
+                       <button type="Submit" id="btnCheckout" name="btnCheckout" class="btn btn-primary"> 確認 </button>
+                       
+                    </div>
+					</form>
+        
+        
+        
 		
-			</tr>
-		    <tr class="info" th:each="ticket_type : ${ticket_type} ">
-		        <td th:text="${ticket_type.ticket_type_name}"></td>
-		        <td th:text="${ticket_type.ticket_type_price}"></td>
-		        <td>
-			       <select name = "amount" >
-			  		 <option th:each="ticket_type : ${ticket_type} " 
-			          th:value="${ticket_type.amount }" 
-			          th:text="${tickt_type.amount}"></option>
-			</select>	
-				 </td>
-				 <td><a th:href="@{ticketSelect(ticket_type_id=${ticket_type.ticket_type})}" >選擇</a></td>	
-				        		            
-		    </tr>
-		</table>
 				
-	</form>
+	
 	</div>
     
           

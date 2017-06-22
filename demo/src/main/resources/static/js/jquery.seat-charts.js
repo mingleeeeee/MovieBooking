@@ -1,8 +1,8 @@
 /*!
- * jQuery-Seat-Charts v1.1.1
+ * jQuery-Seat-Charts v1.1.5
  * https://github.com/mateuszmarkowski/jQuery-Seat-Charts
  *
- * Copyright 2013, 2014 Mateusz Markowski
+ * Copyright 2013, 2016 Mateusz Markowski
  * Released under the MIT license
  */
 
@@ -427,7 +427,7 @@
 		//if there're any legend items to be rendered
 		settings.legend.items.length ? (function(legend) {
 			//either use user-defined container or create our own and insert it right after the seat chart div
-			var $container = (legend.node || $('<div></div').insertAfter(fn))
+			var $container = (legend.node || $('<div></div>').insertAfter(fn))
 				.addClass('seatCharts-legend');
 				
 			var $ul = $('<ul></ul>')
@@ -512,39 +512,52 @@
 			
 				var seatSet = fn.set();
 			
-				//user searches just for a particual character
-				return query.length == 1 ? (function(character) {
-					fn.each(function() {
-						if (this.char() == character) {
-							seatSet.push(this.settings.id, this);
-						}
-					});
-					
-					return seatSet;
-				})(query) : (function() {
-					//user runs a more sophisticated query, so let's see if there's a dot
-					return query.indexOf('.') > -1 ? (function() {
-						//there's a dot which separates character and the status
-						var parts = query.split('.');
-						
-						fn.each(function(seatId) {
-							if (this.char() == parts[0] && this.status() == parts[1]) {
-								seatSet.push(this.settings.id, this);
-							}
-						});
-						
-						return seatSet;
-					})() : (function() {
-						fn.each(function() {
-
-							if (this.status() == query) {
-								seatSet.push(this.settings.id, this);
-							}
-						});
-						
-						return seatSet;
-					})();
-				})();
+				//is RegExp
+		                return query instanceof RegExp ?
+		                    (function () {
+		                        fn.each(function (id) {
+		                            if (id.match(query)) {
+		                                seatSet.push(id, this);
+		                            }
+		                        });
+		                        return seatSet;
+		                    })() :
+		                    (query.length == 1 ?
+		                            (function (character) {
+		                                //user searches just for a particual character
+		                                fn.each(function () {
+		                                    if (this.char() == character) {
+		                                        seatSet.push(this.settings.id, this);
+		                                    }
+		                                });
+		
+		                                return seatSet;
+		                            })(query) :
+		                            (function () {
+		                                //user runs a more sophisticated query, so let's see if there's a dot
+		                                return query.indexOf('.') > -1 ?
+		                                    (function () {
+		                                        //there's a dot which separates character and the status
+		                                        var parts = query.split('.');
+		
+		                                        fn.each(function (seatId) {
+		                                            if (this.char() == parts[0] && this.status() == parts[1]) {
+		                                                seatSet.push(this.settings.id, this);
+		                                            }
+		                                        });
+		
+		                                        return seatSet;
+		                                    })() :
+		                                    (function () {
+		                                        fn.each(function () {
+		                                            if (this.status() == query) {
+		                                                seatSet.push(this.settings.id, this);
+		                                            }
+		                                        });
+		                                        return seatSet;
+		                                    })();
+		                            })()
+		                    );
 				
 			},
 			set        : function set() {//inherits some methods

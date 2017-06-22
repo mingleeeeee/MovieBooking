@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 	 private long seat_id;
 	 
 	 @ManyToOne
-	 @JoinColumn(name = "hall_id")
+	 @JoinColumn(name = "belong_which_hall")
 	 private Hall belong_which_hall ;
 	
 	 

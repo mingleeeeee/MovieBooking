@@ -7,8 +7,7 @@
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<link rel="stylesheet" href="/css/login.css" th:href="@{/css/login.css}"/>
-  		<link rel="stylesheet" href="/css/general.css"/>
+  		
   	</head>
     <body>
     
@@ -16,13 +15,14 @@
         
         <div class = "container topMove">
         	<div class="wrapper">
-        		<form th:action="@{/login}" method="post" name="Login_Form" class="form-signin">
-        			<h3 class="form-signin-heading">Welcome! Please Sign In</h3>
-			  		<hr class="colorgraph"/><br/>
-            		<p th:if="${loginError}" class="error">Wrong user or password</p>
-            		<input type="text" id="username" name="username" autofocus="autofocus" class="form-control" placeholder="Username"/> <br />
-            		<input type="password" id="password" name="password" class="form-control" placeholder="Password"/> <br />
-            		<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button> 
+        		<form >
+        			<h3 class="form-signin-heading">Welcome! <span sec:authorize="isAuthenticated()" sec:authentication="name"></span></h3>
+			  		
+            		
+            		<button sec:authorize="isAnonymous()"><a th:href="@{/login}">
+      					 Login</a>
+      				</button>
+ 
         		</form>
         	</div>
         </div>
