@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -18,11 +20,21 @@ import javax.validation.constraints.Size;
 	 public class Users implements Serializable {
 	 
 	 private static final long serialVersionUID = 3316076651716569539L;	
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
-	 private long user_id;
 	 
-	 @NotNull(message="不得空白")
+	 //@GeneratedValue(strategy=GenerationType.AUTO)
+	 //private long user_id;
+	 
+	 @OneToMany(mappedBy="user")
+	 private List<Authority> authorities;
+	 
+	public List<Authority> getAuthorities() {
+		return authorities;
+	}
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+	
+	@NotNull(message="不得空白")
 	 @Size(min = 1,message="不得空白")
 	 private String last_name ;
 	 @NotNull(message="不得空白")
@@ -30,12 +42,13 @@ import javax.validation.constraints.Size;
 	 
 	 private String nick_name;
 	 
+	 @Id
 	 @NotNull(message="不得空白")
-	 private String username;
+	 private int username;
 	 @NotNull(message="不得空白")
 	 private String password;
 	 
-	 private int enabled;
+	 private int enabled = 1;
 	 
 	 @NotNull(message="不得空白")
 	 private int birth;
@@ -46,12 +59,7 @@ import javax.validation.constraints.Size;
 	 @NotNull(message="不得空白")
 	 private String tel;
 	 
-	 public long getUser_id(){
-		 return this.user_id;
-	 }
-	 public void setUser_id( long user_id){
-		 this.user_id = user_id;
-	 }
+	
 
 	 public String getLast_name(){
 		 return last_name;
@@ -76,10 +84,10 @@ import javax.validation.constraints.Size;
 	 public void setNick_name( String nick_name){
 		 this.nick_name = nick_name;
 	 }
-	 public void setUsername(String username){
+	 public void setUsername(int username){
 		 this.username = username;
 	 }
-	 public String getUsername(){
+	 public int getUsername(){
 		 return username;
 	 }
 	 
@@ -124,7 +132,7 @@ import javax.validation.constraints.Size;
 	 public int getEnabled(){
 		 return enabled;
 	 }
-	 public void setEnabled(){
-		 this.enabled = 1;
+	 public void setEnabled(int enabled){
+		 this.enabled = enabled;
 	 }
 }

@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+  <link rel="stylesheet" href="bootstrap.min.css"/>
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"/>
+    </head>
 <body>
+ <div th:substituteby="header::header"></div>
+
+<div class = "contaniner">
+
+  	<form role ="form" th:action="@{/admin/showCreate}"  th:object="${Show}" method ="post">
+
+		<div class="form-group" th:each="show : ${show}" >
+			   <br/><label>Movie: </label>
+			   <select name = "movie" class="form-control">
+		  					<option  
+		         					th:value="${show.movie_id.movie_id}" 
+		          					th:text="${show.movie_id.movie_name}">
+		          			</option>
+		          		</select>
+			   
+			   <br/>
+			   </div>
+			   
+			   <div class="form-group" th:each="show : ${show}" >
+			   <br/>
+			   <label>Hall: </label>
+			   <select name = "hall" class="form-control">
+		  					<option
+		         					th:value="${show.hall_id.hall_id}" 
+		          					th:text="${show.hall_id.hall_id}" >
+		          			</option>
+		          		</select>
+		          		<br/>   
+			   </div>
+			   
+			   <div class="form-group" th:each="show : ${show}" >
+			   <br/>
+			   <label>Time: </label>
+			   <select name = "time" class="form-control">
+		  					<option
+		         					th:value="${show.time_slot_id.time_slot_id}" 
+		          					th:text="${show.time_slot_id.time_slot_name}" >
+		          			</option>
+		          		</select>
+		          		<br/>   
+			   </div>
+			   
+			   <input type = "hidden" name="movie_id" th:value="*{movie_id}"/>
+  				<input type = "hidden" name="hall_id" th:value="*{hall_id}"/>
+  				<input type = "hidden" name="time_slot_id" th:value="*{time_slot_id}"/>
+			   
+		 		<input type="submit" value="Submit"/>
+	
+	 	</form>
+
+
+ </div>
 
 </body>
 </html>
