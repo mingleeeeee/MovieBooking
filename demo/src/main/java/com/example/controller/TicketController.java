@@ -253,6 +253,7 @@ public class TicketController {
 				seatsToDB.add(Long.parseLong(seatToDB));
 				System.out.println(seatsToDB.get(i));
 			}
+			/**
 			List<SeatAvailability> seatsByShow = seatAvaidao.findByShow(show);
 			for (int i=0; i<seatsByShow.size(); i++) {
 				SeatAvailability seatAvail = seatsByShow.get(i);
@@ -265,6 +266,7 @@ public class TicketController {
 				}
 
 			}
+			**/
 			cart.cleanup();
 			return model;
 		}
