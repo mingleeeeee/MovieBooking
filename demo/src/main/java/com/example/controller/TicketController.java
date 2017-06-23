@@ -80,6 +80,30 @@ public class TicketController {
 	 private final StorageService storageService;	 
 	 
 		
+	 @RequestMapping(value = "/searchMovie" , method = RequestMethod.GET)
+	 public ModelAndView movieSearch ( @RequestParam("movieName") String name, HttpSession session){
+		
+		 ModelAndView model = new ModelAndView("movieSelect");
+	
+		 if ( name.equals("")){
+			 Iterable<Movie> movie = moviedao.findAll();
+		 }
+		 else{
+			 Iterable<Movie> movie = moviedao.findByMovieNameLike(name);
+			 model.addObject("movie", movie);
+		 }
+		 
+		 Iterable<MovieCategory> movieCategory = movieCategorydao.findAll();
+		  model.addObject("allMovieCategories", movieCategory);
+			  
+		  MovieCategory category = movieCategory.iterator().next();
+			model.addObject("movieCategory", category);
+			
+		 return model;
+	 }
+
+	 
+	 
 	 // main 
 	@RequestMapping(value = "/movieSelect" , method = RequestMethod.GET)
 	public ModelAndView movie( @ModelAttribute Movie mov){

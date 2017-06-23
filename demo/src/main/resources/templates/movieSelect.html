@@ -45,6 +45,15 @@
 
 <div class="container">   
 	
+	<div>
+		<form th:action="@{/searchMovie}" method = "GET" >
+			<div class="form-group">
+		   		<label>電影搜尋:</label>
+				<input type="text" name="movieName" />
+				<button type="Submit" class="btn btn-default" >搜尋</button>
+			</div>
+		</form>
+	</div>
 	
 	<div>
 	<form th:action="@{/movieRetrieveByCategory}" method ="post" >
